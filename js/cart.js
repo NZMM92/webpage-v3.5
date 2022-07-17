@@ -3,13 +3,10 @@ var nameOfProduct = [];
 var priceOfProduct = [];
 var productID = {};
 var cart = [];
-var userCart = [];
 var nameArray = [];
 var priceArray = [];
 var table = document.getElementById("cartContents");
 var total = document.getElementById("modal_total-price");
-var checkoutDetails = document.getElementById("checkoutTable");
-var checkoutTotal = document.getElementById("checkout_total-price");
 var uniqueName = [];
 var uniquePrice = [];
 document.querySelectorAll('input[name=productName]').forEach(function (name) {
@@ -43,8 +40,8 @@ function showCart() {
         priceArray.push(item.price);
         uniqueName = [...new Set(nameArray)];
         uniquePrice = [... new Set(priceArray)];
-        table.innerHTML = tr.join("");
-        total.innerHTML = totalPrice.toFixed(2);
+        table.innerHTML = purify.sanitize(tr.join(""));
+        total.innerHTML = purify.sanitize(totalPrice.toFixed(2));
         document.getElementById("naming").value = uniqueName;
         document.getElementById("pricing").value = uniquePrice;
 
