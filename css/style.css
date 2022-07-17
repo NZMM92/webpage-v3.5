@@ -1,0 +1,94 @@
+/* Justin Code */
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.logo-image {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: -6px;
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.card {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.modal-content {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+#cartTable{
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Xavier Code :P */
+a[role="button"] {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  padding: 20px;
+  width: 120px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+a[role="button"] span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+a[role="button"] span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+a[role="button"]:hover span {
+  padding-right: 25px;
+}
+
+a[role="button"]:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#icon {
+  width: 30px;
+  cursor: pointer;
+}
+
+:root {
+  --primary-color: #edf2fc;
+  --secondary-color: #212121;
+}
+
+.dark-theme {
+  --primary-color: #000106;
+  --secondary-color: #fff;
+}

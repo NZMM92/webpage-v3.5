@@ -1,0 +1,19 @@
+@keyframes transitionIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    animation: transitionIn 1000ms;
+}
+
+div {
+    animation: transitionIn 1000ms;
+}
