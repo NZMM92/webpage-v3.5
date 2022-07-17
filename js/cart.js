@@ -1,3 +1,4 @@
+import purify from "./purify";
 var nameOfProduct = [];
 var priceOfProduct = [];
 var productID = {};
@@ -11,12 +12,11 @@ var checkoutDetails = document.getElementById("checkoutTable");
 var checkoutTotal = document.getElementById("checkout_total-price");
 var uniqueName = [];
 var uniquePrice = [];
-const sanitizer = new Sanitizer();
 document.querySelectorAll('input[name=productName]').forEach(function (name) {
-    nameOfProduct.push(sanitize(name.value));
+    nameOfProduct.push(purify.sanitize(name.value));
 })
 document.querySelectorAll('input[name=productPrice]').forEach(function (price) {
-    priceOfProduct.push(sanitize(price.value));
+    priceOfProduct.push(purify.sanitize(price.value));
 })
 function addToCart(id) {
     productID = parseInt(id);
@@ -33,7 +33,7 @@ function addToCart(id) {
 }
 function showCart() {
     var userCart = JSON.parse(sessionStorage.getItem("cart"));
-    sanitizer.sanitize(userCart);
+    purify.sanitize(userCart);
     const tr = [];
     var totalPrice = 0.00;
     userCart.forEach(item => {
