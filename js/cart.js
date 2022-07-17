@@ -40,8 +40,8 @@ function showCart() {
         priceArray.push(item.price);
         uniqueName = [...new Set(nameArray)];
         uniquePrice = [... new Set(priceArray)];
-        table.innerHTML = purify.sanitize(tr.join(""));
-        total.innerHTML = purify.sanitize(totalPrice.toFixed(2));
+        table.value = tr.join("");
+        total.value = totalPrice.toFixed(2);
         document.getElementById("naming").value = uniqueName;
         document.getElementById("pricing").value = uniquePrice;
 
