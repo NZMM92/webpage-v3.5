@@ -12,10 +12,10 @@ var checkoutTotal = document.getElementById("checkout_total-price");
 var uniqueName = [];
 var uniquePrice = [];
 document.querySelectorAll('input[name=productName]').forEach(function (name) {
-    nameOfProduct.push(name.value);
+    nameOfProduct.push(sanitize(name.value));
 })
 document.querySelectorAll('input[name=productPrice]').forEach(function (price) {
-    priceOfProduct.push(price.value);
+    priceOfProduct.push(sanitize(price.value));
 })
 function addToCart(id) {
     productID = parseInt(id);
@@ -27,11 +27,12 @@ function addToCart(id) {
         };
         cart.push(Items);
         sessionStorage.setItem("cart", JSON.stringify(cart));
-        showCart(productID);
+        showCart();
     }
 }
 function showCart() {
     var userCart = JSON.parse(sessionStorage.getItem("cart"));
+    sanitize(userCart);
     const tr = [];
     var totalPrice = 0.00;
     userCart.forEach(item => {
@@ -49,8 +50,8 @@ function showCart() {
     })
 }
 function ClearAll() {
-    console.log(sessionStorage.clear());
-    table.textContent = '';
-    total.textContent = '0';
+    sessionStorage.clear();
+    table.innerText = '';
+    total.innerText = '0';
 }
 
