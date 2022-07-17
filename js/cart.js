@@ -39,13 +39,13 @@ function showCart() {
     var totalPrice = 0.00;
     userCart.forEach(item => {
         totalPrice += item.price;
-        tr.push('<tr><td>' + item.name + '</td>' + '<td>' + item.price + '</>');
+        tr.push('<tr><td>' + sanitizeHTML(item.name) + '</td>' + '<td>' + sanitizeHTML(item.price) + '</>');
         nameArray.push(item.name);
         priceArray.push(item.price);
         uniqueName = [...new Set(nameArray)];
         uniquePrice = [... new Set(priceArray)];
-        table.innerHTML = sanitizeHTML(tr.join(""));
-        total.innerHTML = sanitizeHTML(totalPrice.toFixed(2));
+        table.innerHTML = tr.join("");
+        total.innerHTML = totalPrice.toFixed(2);
         document.getElementById("naming").value = uniqueName;
         document.getElementById("pricing").value = uniquePrice;
 
