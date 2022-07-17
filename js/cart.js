@@ -11,6 +11,7 @@ var checkoutDetails = document.getElementById("checkoutTable");
 var checkoutTotal = document.getElementById("checkout_total-price");
 var uniqueName = [];
 var uniquePrice = [];
+const sanitizer = new Sanitizer();
 document.querySelectorAll('input[name=productName]').forEach(function (name) {
     nameOfProduct.push(sanitize(name.value));
 })
@@ -32,7 +33,7 @@ function addToCart(id) {
 }
 function showCart() {
     var userCart = JSON.parse(sessionStorage.getItem("cart"));
-    sanitize(userCart);
+    sanitizer.sanitize(userCart);
     const tr = [];
     var totalPrice = 0.00;
     userCart.forEach(item => {
