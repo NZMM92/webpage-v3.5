@@ -1,19 +1,24 @@
-import purify from "./purify";
 var nameOfProduct = [];
 var priceOfProduct = [];
 var productID = {};
 var cart = [];
+var userCart = [];
 var nameArray = [];
 var priceArray = [];
 var table = document.getElementById("cartContents");
 var total = document.getElementById("modal_total-price");
 var uniqueName = [];
 var uniquePrice = [];
+var sanitizeHTML = function (str) {
+	return str.replace(/[^\w. ]/gi, function (c) {
+		return '&#' + c.charCodeAt(0) + ';';
+	});
+};
 document.querySelectorAll('input[name=productName]').forEach(function (name) {
-    nameOfProduct.push(purify.sanitize(name.value));
+    nameOfProduct.push(sanitizeHTML(name.value));
 })
 document.querySelectorAll('input[name=productPrice]').forEach(function (price) {
-    priceOfProduct.push(purify.sanitize(price.value));
+    priceOfProduct.push(sanitizeHTML(price.value));
 })
 function addToCart(id) {
     productID = parseInt(id);
@@ -25,12 +30,11 @@ function addToCart(id) {
         };
         cart.push(Items);
         sessionStorage.setItem("cart", JSON.stringify(cart));
-        showCart();
+        showCart(productID);
     }
 }
 function showCart() {
     var userCart = JSON.parse(sessionStorage.getItem("cart"));
-    purify.sanitize(userCart);
     const tr = [];
     var totalPrice = 0.00;
     userCart.forEach(item => {
@@ -40,8 +44,8 @@ function showCart() {
         priceArray.push(item.price);
         uniqueName = [...new Set(nameArray)];
         uniquePrice = [... new Set(priceArray)];
-        table.value = tr.join("");
-        total.value = totalPrice.toFixed(2);
+        table.innerHTML = tr.join("");
+        total.innerHTML = totalPrice.toFixed(2);
         document.getElementById("naming").value = uniqueName;
         document.getElementById("pricing").value = uniquePrice;
 
@@ -49,7 +53,6 @@ function showCart() {
 }
 function ClearAll() {
     sessionStorage.clear();
-    table.innerText = '';
-    total.innerText = '0';
+    table.innerHTML = '';
+    total.innerHTML = '0';
 }
-
